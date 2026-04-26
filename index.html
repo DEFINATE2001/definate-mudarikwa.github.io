@@ -1,190 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Definate Mudarikwa | Data Scientist</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Definate Mudarikwa | Data Analyst Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #1e3a8a, #020617 45%, #000 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 9%;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      padding: 70px 9%;
+      gap: 50px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: #7dd3fc;
+      font-weight: 600;
+      margin-bottom: 22px;
+      animation: blinkGlow 2s infinite alternate;
+    }
+
+    @keyframes blinkGlow {
+      from { box-shadow: 0 0 8px rgba(56,189,248,0.25); }
+      to { box-shadow: 0 0 24px rgba(56,189,248,0.75); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5.4rem);
+      line-height: 1.02;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #38bdf8, #a78bfa, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #0284c7, #7c3aed);
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn.outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #e2e8f0;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .hero-card {
+      padding: 32px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(22px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      animation: floatCard 4s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .metric {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .metric h3 {
+      font-size: 2rem;
+      color: #38bdf8;
+    }
+
+    .metric p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin: 6px 0 0;
+    }
+
+    section {
+      padding: 80px 9%;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      max-width: 720px;
+      line-height: 1.7;
+      margin-bottom: 42px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .tech-dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .stat-tile {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.14), rgba(124,58,237,0.10));
+      border: 1px solid rgba(56,189,248,0.24);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+    }
+
+    .stat-tile h3 {
+      font-size: 2.1rem;
+      color: #7dd3fc;
+      margin-bottom: 6px;
+    }
+
+    .stat-tile p {
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      color: #dbeafe;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: 0.3s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56,189,248,0.8);
+      box-shadow: 0 0 18px rgba(56,189,248,0.25);
+    }
+
+    .skill-card,
+    .project-card,
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 24px;
+      padding: 26px;
+      backdrop-filter: blur(18px);
+      transition: all 0.35s ease;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56,189,248,0.6);
+      box-shadow: 0 24px 60px rgba(56,189,248,0.13);
+    }
+
+    .skill-card h3,
+    .project-card h3 {
+      margin-bottom: 12px;
+      color: #e0f2fe;
+    }
+
+    .skill-card p,
+    .project-card p,
+    .contact-card p {
+      color: #cbd5e1;
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 26px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(56,189,248,0.12), transparent 55%);
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tech {
+      margin: 18px 0;
+      color: #7dd3fc !important;
+      font-weight: 700;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.35);
+      color: #bae6fd;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .resume-section {
+      text-align: center;
+      border-radius: 32px;
+      margin: 60px 9%;
+      padding: 70px 30px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.16), rgba(124,58,237,0.16));
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    footer {
+      padding: 34px 9%;
+      text-align: center;
+      color: #64748b;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <nav class="navbar">
+    <div class="logo">Definate<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
+  <header class="hero" id="about">
+    <div>
+      <div class="tag">Data Analyst • Machine Learning • Dashboard Developer</div>
+      <h1>Turning data into <span>clear business decisions.</span></h1>
+      <p>
+        I build analytical dashboards, machine learning models, and data-driven reports that help organizations understand patterns, predict outcomes, and make smarter decisions.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="https://github.com/DEFINATE2001" target="_blank" class="btn outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/definate-mudarikwa-069187261" target="_blank" class="btn outline">LinkedIn</a>
+      </div>
+    </div>
 
-<header>
-    <h1>DEFINATE MUDARIKWA</h1>
-    <p class="subtitle">Entry-Level Data Scientist | Global Opportunities</p>
-</header>
+    <div class="hero-card">
+      <h2>Portfolio Snapshot</h2>
+      <p>Focused on analytics, machine learning, visualization, and decision support.</p>
+      <div class="metric-grid">
+        <div class="metric">
+          <h3>3+</h3>
+          <p>Flagship Projects</p>
+        </div>
+        <div class="metric">
+          <h3>SQL</h3>
+          <p>Business Queries</p>
+        </div>
+        <div class="metric">
+          <h3>ML</h3>
+          <p>Predictive Models</p>
+        </div>
+        <div class="metric">
+          <h3>BI</h3>
+          <p>Dashboards</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section class="hero">
-    <p>
-        I am an entry-level data scientist with a background in Computer Science and Applied Data Science,
-        actively seeking opportunities worldwide including remote and visa-sponsored roles.
+  <section id="skills">
+  <h2 class="section-title">Technical Skills Dashboard</h2>
+  <p class="section-subtitle">
+    A recruiter-friendly view of my analytics, programming, machine learning, and statistical skill set.
+  </p>
+
+  <div class="tech-dashboard">
+    <div class="dashboard-stats">
+      <div class="stat-tile">
+        <h3>10+</h3>
+        <p>Core Tools</p>
+      </div>
+      <div class="stat-tile">
+        <h3>6+</h3>
+        <p>Python Libraries</p>
+      </div>
+      <div class="stat-tile">
+        <h3>5</h3>
+        <p>ML Skill Areas</p>
+      </div>
+      <div class="stat-tile">
+        <h3>5</h3>
+        <p>Data Science Metrics</p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <div class="skill-card">
+        <h3>Programming & Tools</h3>
+        <p>Tools used for analysis, reporting, dashboards, and project version control.</p>
+        <div class="skill-chips">
+          <span class="chip">Python</span>
+          <span class="chip">R</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Git</span>
+          <span class="chip">GitHub</span>
+          <span class="chip">Jupyter Notebook</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">Quarto</span>
+          <span class="chip">Excel</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Python Libraries</h3>
+        <p>Libraries used for data cleaning, modeling, visualization, and deep learning workflows.</p>
+        <div class="skill-chips">
+          <span class="chip">Pandas</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Scikit-learn</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">Torchvision</span>
+          <span class="chip">Matplotlib</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>R & Analytics</h3>
+        <p>R tools and methods used for statistical analysis, visualization, and simulation projects.</p>
+        <div class="skill-chips">
+          <span class="chip">tidyverse</span>
+          <span class="chip">ggplot2</span>
+          <span class="chip">caret</span>
+          <span class="chip">dplyr</span>
+          <span class="chip">PCA</span>
+          <span class="chip">Clustering</span>
+          <span class="chip">Discrete-Event Simulation</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Machine Learning</h3>
+        <p>Modeling techniques used to build, compare, tune, and evaluate predictive systems.</p>
+        <div class="skill-chips">
+          <span class="chip">Regression</span>
+          <span class="chip">Classification</span>
+          <span class="chip">Transfer Learning</span>
+          <span class="chip">Cross-Validation</span>
+          <span class="chip">Feature Engineering</span>
+          <span class="chip">Model Evaluation</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Statistics & Data Science</h3>
+        <p>Analytical methods used to explore data, validate findings, and explain model performance.</p>
+        <div class="skill-chips">
+          <span class="chip">EDA</span>
+          <span class="chip">Hypothesis Testing</span>
+          <span class="chip">Dimensionality Reduction</span>
+          <span class="chip">ROC-AUC</span>
+          <span class="chip">Precision</span>
+          <span class="chip">Recall</span>
+          <span class="chip">F1-score</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">
+      Three strong projects showing analytics, machine learning, simulation, and business decision-making.
     </p>
 
-   <div class="buttons">
-  <a 
-    href="specific data science resume.pdf" 
-    class="btn" 
-    target="_blank"
-  >
-    View Resume
-  </a>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Accident Severity Prediction Dashboard</h3>
+        <p>
+          An end-to-end machine learning dashboard that analyzes accident patterns and predicts severity using classification models.
+        </p>
+        <p class="tech">Tech: Python, Streamlit, Scikit-learn, Plotly</p>
+        <div class="project-links">
+          <a class="mini-btn" href="#" target="_blank">Live Demo</a>
+          <a class="mini-btn" href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
 
-  <a href="#projects" class="btn outline">
-    View Projects
-  </a>
-</div>
+      <div class="project-card">
+        <h3>Canadian Causes of Death Analysis</h3>
+        <p>
+          A data analysis project exploring Canadian mortality trends using PCA, clustering, and visual analytics to identify patterns across causes of death.
+        </p>
+        <p class="tech">Tech: R, Quarto, PCA, Clustering</p>
+        <div class="project-links">
+          <a class="mini-btn" href="#" target="_blank">Report</a>
+          <a class="mini-btn" href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
 
-</section>
+      <div class="project-card">
+        <h3>Healthcare Capacity Optimization</h3>
+        <p>
+          A discrete-event simulation project that evaluates doctor staffing levels, waiting times, utilization, and patient blocking probability.
+        </p>
+        <p class="tech">Tech: R, Quarto, Simulation</p>
+        <div class="project-links">
+          <a class="mini-btn" href="#" target="_blank">Report</a>
+          <a class="mini-btn" href="https://github.com/DEFINATE2001/healthcare-queue-simulation" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p>
-        I hold a Bachelor's degree in Computer Science from Parul University (2023) and I am completing
-        a Post-Baccalaureate in Applied Data Science at Thompson Rivers University (April 2026).
-        I enjoy turning data into insights and building real-world solutions.
+  <div class="resume-section">
+    <h2 class="section-title">Open to Data Analyst Opportunities</h2>
+    <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+      Interested in entry-level data analyst, business analyst, and machine learning analyst roles where I can use data to solve real problems.
     </p>
-</section>
-
-<section id="skills">
-    <h2>Skills</h2>
-    <ul>
-        <li>Python, R, SQL</li>
-        <li>Machine Learning & Statistics</li>
-        <li>Data Visualization</li>
-        <li>Regression & Cross-Validation</li>
-    </ul>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-
-  <div class="card">
-    <h3>Data Mentor Chatbot</h3>
-     <p>
-    An interactive Streamlit-based AI data assistant designed to guide users
-    through data analysis tasks using natural language. The chatbot supports
-    dataset upload, exploration, visualization, cleaning, and basic modeling
-    while explaining results in a clear, mentor-style manner.
-  </p>
-
-  <p>
-    It enables users to quickly understand their data, apply appropriate
-    analytical techniques, and interpret outputs without writing extensive code.
-  </p>
-    <p><strong>Tech:</strong> Python, Streamlit, Pandas, Scikit-learn</p>
-    <a 
-      href="https://github.com/DEFINATE2001/chatbot-project"
-      target="_blank"
-      class="btn outline"
-    >
-      View on GitHub
-    </a>
+    <a href="#" class="btn primary">Download Resume</a>
   </div>
-<div class="card">
-  <h3>Pneumonia X-ray Model Comparison on Resnet and alexnet</h3>
 
-  <p>
-    A deep learning project that compares transfer learning models to classify
-    pediatric chest X-ray images as Normal or Pneumonia. The project focuses on
-    building an efficient and reproducible image classification pipeline using
-    pretrained neural networks.
-  </p>
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">Let’s connect for data analyst, analytics, dashboard, or machine learning opportunities.</p>
 
-  <p>
-    Two architectures, AlexNet and ResNet18, were trained and evaluated using
-    performance metrics such as accuracy, precision, recall, F1-score, and ROC-AUC.
-    The results show how different models perform on medical image classification tasks.
-  </p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p>your-email@email.com</p>
+      </div>
+      <div class="contact-card">
+        <h3>GitHub</h3>
+        <p>github.com/DEFINATE2001</p>
+      </div>
+      <div class="contact-card">
+        <h3>LinkedIn</h3>
+        <p>linkedin.com/in/definate-mudarikwa-069187261</p>
+      </div>
+    </div>
+  </section>
 
-  <p>
-    The workflow includes data preprocessing, validation splitting, model training,
-    evaluation, and result interpretation, all documented in a Jupyter notebook.
-  </p>
-
-  <p><strong>Tech:</strong> Python, PyTorch, Torchvision, Scikit-learn, Matplotlib</p>
-
-  <a 
-    href="https://github.com/DEFINATE2001/resnet_vs_alexnet_pneumonia"
-    target="_blank"
-    class="btn outline"
-  >
-    View on GitHub
-  </a>
-</div>
-
-  <div class="card">
-   <h3>Healthcare Capacity Optimization Using Discrete-Event Simulation</h3>
-<p>
-A discrete-event simulation project that models patient flow in a healthcare
-setting to explore queue behavior, waiting times, and system congestion. The
-simulation focuses on illustrating how service processes and arrival patterns
-affect operational performance in healthcare systems.
-</p>
-
-<p>
-This project emphasizes simulation methodology rather than real-world datasets,
-providing a clear foundation for understanding healthcare operations and
-decision-making under uncertainty.
-</p>
-
-<p><strong>Tech:</strong> R, Quarto, Discrete-Event Simulation</p>
-
-<a
-  href="https://github.com/DEFINATE2001/healthcare-queue-simulation"
-  target="_blank"
-  class="btn outline"
->
-  View on GitHub
-</a>
-
-  </div>
-<div class="card">
-  <h3>Canadian Causes of Death Analysis</h3>
-
-  <p>
-  A data analysis project exploring mortality trends in Canada by examining causes of death across multiple years.
-  </p>
-
-  <p>
-  The project applies data transformation, clustering, and dimensionality reduction to identify patterns, trends, and similarities between different causes of death.
-  </p>
-
-  <p><strong>Tech:</strong> R, PCA, Clustering, Data Analysis</p>
-
-  <a
-    href="https://github.com/DEFINATE2001/YOUR-REPO-LINK"
-    target="_blank"
-    class="btn outline"
-  >
-    View on GitHub
-  </a>
-</div>
-</section>
-
-
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: definatemudarikwa2001@gmail.com</p>
-    <p>LinkedIn: linkedin.com/in/definate-mudarikwa-069187261</p>
-</section>
-
-<footer>
-    <p>© 2026 Definate Mudarikwa</p>
-</footer>
-
+  <footer>
+    <p>© 2026 Definate Mudarikwa. Built with HTML, CSS, analytics thinking, and clean design.</p>
+  </footer>
 </body>
 </html>
-
-
-
-
-
-
-
